@@ -1,0 +1,35 @@
+@startuml
+
+package framework{
+
+    interface Message{
+        + Class<? extends Message> getType();
+    }
+
+    interface Channel<M extends Message> {
+        + void dispatch(M message);
+    }
+
+    interface EventRouter<M extends Message> {
+        + void registerChannel(Class<? extends M> messageType, Channel<? extends M> channel);
+        + void dispatch(M message);
+    }
+}
+
+package implementation{
+    class Event implements Message {
+        + Class<? extends Message> getType();
+    }
+    class EventHandler implements Channel {
+            + void dispatch(Event message);
+    }
+
+    class EventsDispatcher implements EventRouter {
+            - Map<Class<? extends Event>>, Handler> handlersStore;
+
+
+    }
+
+
+}
+@enduml
