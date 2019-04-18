@@ -1,0 +1,9 @@
+@startuml
+
+Main -> EventsDispatcher: 'registerEventHandler( type, handler )'
+Main -> EventsDispatcher : 'dispatch(event)'
+activate EventsDispatcher
+EventsDispatcher ->EventsDispatcher : select EventHandler
+EventsDispatcher -> Event: 'dispatch(event)'
+deactivate EventsDispatcher
+@enduml
